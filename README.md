@@ -1,5 +1,5 @@
-# Rabbitmq Test
-# İnstall linux
+# RabbitMQ Test
+# İnstall RabbitMQ linux
 - sudo apt-get update
 - sudo apt-get install erlang
 - sudo apt-get install rabbitmq-server
@@ -11,3 +11,9 @@
 - sudo rabbitmqctl add_user admin admin
 - sudo rabbitmqctl set_user_tags admin administrator
 - sudo rabbitmqctl set_permissions -p / admin "." "." "."
+
+# Run this app
+- npm install
+- npm run consumer myqueuename
+- npm run publisher myqueuename
+- And wait :)
