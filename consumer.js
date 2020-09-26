@@ -1,5 +1,7 @@
 const amqp = require('amqplib');
 const data = require('./data.json');
+const redis = require('redis');
+const client = redis.createClient();
 
 const message = {
     description:"Bu bir test mesajıdır."
@@ -20,7 +22,11 @@ async function connect_rabbitmq(){
             const detail = data.find(item=>item.id == messageInfo.description);
             if(detail){
                 console.log("İşlenen kayıt",detail)
-                channel.ack(message);
+                client.set(`user_${detail.id}`,JSON.stringify(detail),(err,status)=>{
+                    if(!err){
+                        channel.ack(message);
+                    }
+                })
             }
         })
 
